@@ -1,6 +1,4 @@
-# cappsoolSDK
-
-CappsoolLiteSDK integration guide for iOS
+# CappsoolLiteSDK integration guide for iOS
 
 1. Obtain an Integration key from Cappsool
 2. add CappsoolLiteSDK.framework to your XCode Project (drag and drop)
