@@ -19,11 +19,11 @@ CappsoolLiteSDK integration guide for iOS
 
 ```
 #import <CappsoolLiteSDK/CappsoolLiteSDK.h>
-…
+...
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 ...
 [[CSServer sharedInstance] putIntegrationKey:@"<Your integration key>"];
-…
+...
 }
 ```
 
@@ -56,6 +56,6 @@ CappsoolLiteSDK integration guide for iOS
 8. CSAdView size should generally span the entire width of the device (portrait mode) and have an height of:
 - 380px : large ad, suitable for a list  or a scroll view
 - 240px : medium ad, suitable as a big banner or in a list or a scroll view
-- 80px : banner, or small list item
+- 100px/80px : banner, or small list item
 
 
