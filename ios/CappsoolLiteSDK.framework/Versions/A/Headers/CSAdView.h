@@ -1,6 +1,6 @@
 //
 //  CSAdView.h
-//  CappsoolSDK
+//  CappsoolLiteSDK
 //
 //  Created by Eyal Flato on 04/11/2015.
 //  Copyright © 2015 Eyal Flato. All rights reserved.
