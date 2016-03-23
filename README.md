@@ -56,9 +56,9 @@ iOS integration:
 7. Size and Location Description should be letters only string. For example: mainScreenBottomBanner, listItemMedium, etc. These text will later help us configure the appearance of the ad through Cappsool’s servers. 
 
 8. CSAdView size should generally span the entire width of the device (portrait mode) and have an height of:
-- 380px : large ad, suitable for a list  or a scroll view
-- 240px : medium ad, suitable as a big banner or in a list or a scroll view
-- 100px/80px : banner, or small list item
+  380px : large ad, suitable for a list  or a scroll view.
+  250px : medium ad, suitable as a big banner or in a list or a scroll view.
+  100px/80px : banner, or small list item.
 
 
 
