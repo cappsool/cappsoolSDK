@@ -1,7 +1,9 @@
-# CappsoolLiteSDK integration guide for iOS
+# CappsoolLiteSDK integration guide for iOS/Android
+
+iOS integration:
 
 1. Obtain an Integration key from Cappsool
-2. add CappsoolLiteSDK.framework to your XCode Project (drag and drop)
+2. Add CappsoolLiteSDK.framework to your XCode Project (drag and drop)
 3. Go to Project Settings -> General -> Linked Frameworks and Libraries and add AdSupport.framework
 4. Open info.plist and paste these lines (if not there earlier):
 
@@ -57,3 +59,86 @@
 - 100px/80px : banner, or small list item
 
 
+
+
+Android integration:
+1. Obtain an Integration key from Cappsool
+2. Add cappsool-lite-sdk jar file to your project.
+3. In order to initialize the SDK, add the following code to your onCreate function:
+
+```
+CSAdView myCsAdView = (CSAdView) findViewById(R.id.banner_csadview);
+myCsAdView.setIntegrationKey("<Your integration key>");
+```
+Note: The <Your integration key> string should be replaced with your own integration key.  In case if you are going to use a number of ads in the project then you need to pass the integration key one time.
+
+4. Adding a CSAdView to Your Application
+
+To add a CSAdView to your Application, simply include the <CSAdView> element in your activity layout. For example, here's a layout file in which the CSAdView  fills the ad on the screen:
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.cappsool.lite.sdk.widget.CSAdView
+        android:id="@+id/banner_csadview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+    </com.cappsool.lite.sdk.widget.CSAdView>
+</LinearLayout>
+```
+
+To load an ad in the CSAdView, use load(). For example:
+
+```
+CSAdView myCsAdView = (CSAdView) findViewById(R.id.banner_csadview);
+myCsAdView.setIntegrationKey("<Your integration key>");
+myCsAdView.load("<Size and Location description>");
+```
+
+Before this will work, however, your application must have access to the Internet. To get Internet access, request the INTERNET permission in your manifest file. For example:
+
+```
+<manifest ... >
+    <uses-permission android:name="android.permission.INTERNET" />
+    ...
+</manifest>
+```
+
+5. Adding a CSAdViewListener to Activity
+    
+When the user touches an ad in your CSAdView, the regular behavior is for CSAdView to launch an default web browser that handles URLs. A CSAdViewListener is helping to CSAdView in order to do this through onStartExternalBrowser method. You should implement an abstract method onStartExternalBrowser in the your activity or fragment.
+
+For example, here's a code in which the CSAdViewListener launches an default web browser:
+
+```
+public class MainActivity extends AppCompatActivity implements CSAdViewListener {
+     private CSAdView mCsAdView;
+     ...
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mCsAdView = (CSAdView) findViewById(R.id.banner_csadview);
+        mCsAdView.setIntegrationKey("<Your integration key>"));
+        mCsAdView.setAdListener(this);
+
+        mCsAdView.load("<Size and Location description>");
+    }
+
+    @Override
+    public void onStartExternalBrowser(Intent intent) {
+        if (intent != null) {
+            startActivity(intent);
+        }
+    }
+}
+```
+
+6. Size and Location Description should be letters only string. For example: mainScreenBottomBanner, listItemMedium, etc. These text will later help us configure the appearance of the ad through Cappsool’s servers. 
