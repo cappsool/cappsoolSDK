@@ -15,7 +15,7 @@ iOS integration:
     </dict>
 ```
 
-5. In <your>AppDelegate.m, add the bold lines:
+5. In <your>AppDelegate.m, add this line:
 
 ```
 #import <CappsoolLiteSDK/CappsoolLiteSDK.h>
@@ -52,7 +52,9 @@ iOS integration:
 
 }
 ```
+
 7. Size and Location Description should be letters only string. For example: mainScreenBottomBanner, listItemMedium, etc. These text will later help us configure the appearance of the ad through Cappsool’s servers. 
+
 8. CSAdView size should generally span the entire width of the device (portrait mode) and have an height of:
 - 380px : large ad, suitable for a list  or a scroll view
 - 240px : medium ad, suitable as a big banner or in a list or a scroll view
@@ -62,6 +64,7 @@ iOS integration:
 
 
 Android integration:
+
 1. Obtain an Integration key from Cappsool
 2. Add cappsool-lite-sdk jar file to your project.
 3. In order to initialize the SDK, add the following code to your onCreate function:
