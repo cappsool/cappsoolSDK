@@ -126,4 +126,4 @@ public class MainActivity extends AppCompatActivity implements CSAdViewListener 
 }
 ```
 
-6. Size and Location Description should be letters only string. For example: mainScreenBottomBanner, listItemMedium, etc. These text will later help us configure the appearance of the ad through Cappsool’s servers. 
+* Size and Location Description should be letters only string. For example: mainScreenBottomBanner, listItemMedium, etc. These text will later help us configure the appearance of the ad through Cappsool’s servers. 
