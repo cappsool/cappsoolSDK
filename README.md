@@ -1,12 +1,11 @@
 # CappsoolLiteSDK integration guide for iOS/Android
 
-iOS integration:
+## iOS integration:
 
-1. Obtain an Integration key from Cappsool
-2. Add CappsoolLiteSDK.framework to your XCode Project (drag and drop)
-3. Go to Project Settings -> General -> Linked Frameworks and Libraries and add AdSupport.framework
-4. Open info.plist and paste these lines (if not there earlier):
-
+* Obtain an Integration key from Cappsool
+* Add CappsoolLiteSDK.framework to your XCode Project (drag and drop)
+* Go to Project Settings -> General -> Linked Frameworks and Libraries and add AdSupport.framework
+* Open info.plist and paste these lines (if not there earlier):
 ```
     <key>NSAppTransportSecurity</key>
     <dict>
@@ -14,9 +13,7 @@ iOS integration:
         <true/>
     </dict>
 ```
-
-5. In <your>AppDelegate.m, add this line:
-
+* In <your>AppDelegate.m, add this line:
 ```
 #import <CappsoolLiteSDK/CappsoolLiteSDK.h>
 ...
@@ -26,9 +23,7 @@ iOS integration:
 ...
 }
 ```
-
-6. In your view controller, in the desired location, create an instance of CSAdView and add it to the view. For example:
-
+* In your view controller, in the desired location, create an instance of CSAdView and add it to the view. For example:
 ```
 #import <CappsoolLiteSDK/CappsoolLiteSDK.h>
 
@@ -52,10 +47,8 @@ iOS integration:
 
 }
 ```
-
-7. Size and Location Description should be letters only string. For example: mainScreenBottomBanner, listItemMedium, etc. These text will later help us configure the appearance of the ad through Cappsool’s servers. 
-
-8. CSAdView size should generally span the entire width of the device (portrait mode) and have an height of:
+* Size and Location Description should be letters only string. For example: mainScreenBottomBanner, listItemMedium, etc. These text will later help us configure the appearance of the ad through Cappsool’s servers. 
+* CSAdView size should generally span the entire width of the device (portrait mode) and have an height of:
   380px : large ad, suitable for a list  or a scroll view.
   250px : medium ad, suitable as a big banner or in a list or a scroll view.
   100px/80px : banner, or small list item.
@@ -63,22 +56,17 @@ iOS integration:
 
 
 
-Android integration:
+## Android integration:
 
-1. Obtain an Integration key from Cappsool
-2. Add cappsool-lite-sdk jar file to your project.
-3. In order to initialize the SDK, add the following code to your onCreate function:
-
+* Obtain an Integration key from Cappsool
+* Add cappsool-lite-sdk jar file to your project.
+* In order to initialize the SDK, add the following code to your onCreate function:
 ```
 CSAdView myCsAdView = (CSAdView) findViewById(R.id.banner_csadview);
 myCsAdView.setIntegrationKey("<Your integration key>");
 ```
 Note: The <Your integration key> string should be replaced with your own integration key.  In case if you are going to use a number of ads in the project then you need to pass the integration key one time.
-
-4. Adding a CSAdView to Your Application
-
-To add a CSAdView to your Application, simply include the <CSAdView> element in your activity layout. For example, here's a layout file in which the CSAdView  fills the ad on the screen:
-
+* Adding a CSAdView to the application:  simply include the <CSAdView> element in your activity layout. For example, here's a layout file in which the CSAdView  fills the ad on the screen:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
@@ -94,26 +82,20 @@ To add a CSAdView to your Application, simply include the <CSAdView> element in 
     </com.cappsool.lite.sdk.widget.CSAdView>
 </LinearLayout>
 ```
-
 To load an ad in the CSAdView, use load(). For example:
-
 ```
 CSAdView myCsAdView = (CSAdView) findViewById(R.id.banner_csadview);
 myCsAdView.setIntegrationKey("<Your integration key>");
 myCsAdView.load("<Size and Location description>");
 ```
-
 Before this will work, however, your application must have access to the Internet. To get Internet access, request the INTERNET permission in your manifest file. For example:
-
 ```
 <manifest ... >
     <uses-permission android:name="android.permission.INTERNET" />
     ...
 </manifest>
 ```
-
-5. Adding a CSAdViewListener to Activity
-    
+* Adding a CSAdViewListener to Activity: 
 When the user touches an ad in your CSAdView, the regular behavior is for CSAdView to launch an default web browser that handles URLs. A CSAdViewListener is helping to CSAdView in order to do this through onStartExternalBrowser method. You should implement an abstract method onStartExternalBrowser in the your activity or fragment.
 
 For example, here's a code in which the CSAdViewListener launches an default web browser:
