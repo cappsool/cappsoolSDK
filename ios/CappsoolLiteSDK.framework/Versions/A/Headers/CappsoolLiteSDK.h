@@ -10,6 +10,7 @@
 
 #import <CappsoolLiteSDK/CSServer.h>
 #import <CappsoolLiteSDK/CSAdView.h>
+#import <CappsoolLiteSDK/CSAppVideoView.h>
 //! Project version number for CappsoolLiteSDK.
 FOUNDATION_EXPORT double CappsoolLiteSDKVersionNumber;
 

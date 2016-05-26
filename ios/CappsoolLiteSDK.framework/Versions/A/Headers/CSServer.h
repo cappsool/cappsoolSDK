@@ -11,6 +11,7 @@
 @interface CSServer : NSObject
 +(CSServer*) sharedInstance;
 -(void) putIntegrationKey:(NSString *)integrationKey;
+-(void) putUserGender:(NSString *)gender;
 -(void) requestOffer:(NSString*)content;
 -(NSString*) getQuickSuggestUrl:(NSString*)content;
 @end

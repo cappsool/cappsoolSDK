@@ -8,7 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class CSAdView;
+@class CSAppVideoView;
+
+@protocol CSAdViewDelegate <NSObject>
+@optional
+- (void) csAdViewReady:(nonnull CSAdView *)adView;
+@end
+
 @interface CSAdView : UIView
 
--(void) load:(NSString*)content;
+@property (nullable, nonatomic, assign) id <CSAdViewDelegate> csAdViewDelegate;
+
+-(void) load:(nullable NSString*)content;
+-(nullable NSArray*) getSuggestedApps;
+-(nullable CSAppVideoView *) createAppVideoView :(CGRect)frame;
+
 @end
