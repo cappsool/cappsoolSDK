@@ -27,7 +27,7 @@
 ```
 #import <CappsoolLiteSDK/CappsoolLiteSDK.h>
 
-@interface ViewController () 
+@interface ViewController () <CSAdViewDelegate>
 ...
 @property (strong) CSAdView *csAdView;
 @end
@@ -40,11 +40,18 @@
     
     // Positions the ad at the bottom, with the correct size
     self.csAdView.frame = CGRectMake(0, self.view.bounds.size.height - 380, self.view.bounds.size.width, 380);
+    [self.csAdView setHidden:true];
     [self.view addSubview:self.csAdView];
+
     
     // Loads the ad over the network
     [self.csAdView load:@"<placement>"];
 
+}
+
+- (void) csAdViewReady:(nonnull CSAdView *)adView {
+    // show the ad only when it's ready
+    [self.csAdView setHidden:false];
 }
 ```
 
