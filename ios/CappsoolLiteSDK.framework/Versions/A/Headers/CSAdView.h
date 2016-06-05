@@ -14,14 +14,13 @@
 @protocol CSAdViewDelegate <NSObject>
 @optional
 - (void) csAdViewReady:(nonnull CSAdView *)adView;
+- (void) csAdDidClick:(nonnull CSAdView *)adViewController;
 @end
 
 @interface CSAdView : UIView
 
 @property (nullable, nonatomic, assign) id <CSAdViewDelegate> csAdViewDelegate;
-
--(void) load:(nullable NSString*)content;
--(nullable NSArray*) getSuggestedApps;
--(nullable CSAppVideoView *) createAppVideoView :(CGRect)frame;
-
+@property BOOL allowScroll;
+-(void) load:(nonnull NSString*)htmlString;
+-(void) reload;
 @end

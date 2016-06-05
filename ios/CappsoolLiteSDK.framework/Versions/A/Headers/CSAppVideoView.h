@@ -19,8 +19,6 @@
 
 @interface CSAppVideoView : UIView
 @property (nullable, nonatomic, assign) id <CSAppVideoViewDelegate> csAppVideoViewDelegate;
-@property BOOL showVideo;
-@property BOOL showTimer;
 
--(void) loadApp:(nullable NSDictionary *)app;
+-(void) loadApps:(nonnull NSArray *)apps;
 @end

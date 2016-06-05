@@ -23,37 +23,66 @@
 ...
 }
 ```
-* In your view controller, in the desired location, create an instance of CSAdView and add it to the view. For example:
+* (optional) Setup additional paramters to improve targeting:
 ```
-#import <CappsoolLiteSDK/CappsoolLiteSDK.h>
+[[CSServer sharedInstance] putUserGender:@"<male/female>"];
+[[CSServer sharedInstance] putUserAge:@"<age>"];
+```
+### Requesting and ad - Option 1: interstitial
 
-@interface ViewController () <CSAdViewDelegate>
-...
-@property (strong) CSAdView *csAdView;
+
+```
+@interface ViewController () <CSServerDelegate>
 @end
+
+@implementation ViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    CSAdView* csAdView = [[CSAdView alloc] init];
-    self.csAdView = csAdView;
-    
-    // Positions the ad at the bottom, with the correct size
-    self.csAdView.frame = CGRectMake(0, self.view.bounds.size.height - 380, self.view.bounds.size.width, 380);
-    [self.csAdView setHidden:true];
-    [self.view addSubview:self.csAdView];
-
-    
-    // Loads the ad over the network
-    [self.csAdView load:@"<placement>"];
-
+    ...
+    [CSServer sharedInstance].csServerDelegate = self;
+    [[CSServer sharedInstance] startLoading:@"interstitial"];
+    ...
 }
 
-- (void) csAdViewReady:(nonnull CSAdView *)adView {
-    // show the ad only when it's ready
-    [self.csAdView setHidden:false];
+-(void) csAdReady:(CSServer *)csServer subject:(nullable NSString *)subject {
+    if ([subject isEqualToString:@"interstitial"]) {
+        // display the ad when it's ready, or whenever after that, according to the app behaviour
+        [[CSServer sharedInstance] presentInterstitialAd:self];
+    }
 }
 ```
+
+call [[CSServer sharedInstance] stopLoading] when the ad auto refresh is not needed any more.
+
+### Requesting and ad - Option 2: custom view
+
+```
+@interface ViewController () <CSServerDelegate>
+@end
+
+@implementation ViewController
+
+
+- (void)myMethod {
+    ...
+    [CSServer sharedInstance].csServerDelegate = self;
+    [[CSServer sharedInstance] loadOnce:@"ad"];
+    ...
+}
+
+-(void) csAdReady:(CSServer *)csServer subject:(nullable NSString *)subject {
+    if ([subject isEqualToString:@"ad"]) {
+        CGRect rect = CGRectMake(80,10,300,250);
+        CSAdView *csAdView = [[CSServer sharedInstance] createAdView:rect subject:@"ad"];
+        csAdView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleWidth;
+        [self.view addSubview:self.csAdView];
+    }
+}
+```
+* Can be used as a banner as well.
+* Make sure you have a way to close or hide the ad, if needed.
 
 
 
