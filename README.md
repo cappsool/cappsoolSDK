@@ -127,33 +127,16 @@ Before this will work, however, your application must have access to the Interne
     ...
 </manifest>
 ```
-* Adding a CSAdViewListener to Activity: 
-When the user touches an ad in your CSAdView, the regular behavior is for CSAdView to launch an default web browser that handles URLs. A CSAdViewListener is helping to CSAdView in order to do this through onStartExternalBrowser method. You should implement an abstract method onStartExternalBrowser in the your activity or fragment.
-
-For example, here's a code in which the CSAdViewListener launches an default web browser:
+* Adding a CSAdViewListener: 
+To recieve a notification when the widget is ready to be displayed
 
 ```
-public class MainActivity extends AppCompatActivity implements CSAdViewListener {
-     private CSAdView mCsAdView;
-     ...
+myAdView.setAdListener(new CSAdViewListener() {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        mCsAdView = (CSAdView) findViewById(R.id.banner_csadview);
-        mCsAdView.setIntegrationKey("<Your integration key>"));
-        mCsAdView.setAdListener(this);
-
-        mCsAdView.load("<placement>");
+    public void onWidgetLoaded() {
+// Do something, such as:
+        myAdView.setVisibility(View.VISIBLE);
     }
-
-    @Override
-    public void onStartExternalBrowser(Intent intent) {
-        if (intent != null) {
-            startActivity(intent);
-        }
-    }
-}
+});
 ```
