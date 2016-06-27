@@ -117,7 +117,7 @@ In case you are going to use a number of ads in the project then you need to re-
     </com.cappsool.lite.sdk.widget.CSAdView>
 </LinearLayout>
 ```
-In order to initialize the CSAdView, use this:
+* In order to initialize the CSAdView, use this:
 ```
 CSAdView mCsAdView = mCSAdWidget.prepareWebView((CSAdView) findViewById(R.id.banner_csadview));
 ```
@@ -147,7 +147,7 @@ onOrientationChange - If the SDK is initialized in the onCreate function of the 
 An example for using the onOrientationChange notification: Lets say you made some changes to the CSAdView in the onCreate function (set its visibility to be hidden maybe), and expect the onWidgetLoaded notification to change those back (to be shown again), so it will. However, if you'll rotate the screen - the onCreate function will be called again, the visibility will be set to hidden again, but the widget won't be loaded this time because it's already loaded. Use the onOrientationChange notification to change it back to visible.
 
 
-To load the ad, use load(). For example:
+* To load the ad, use load(). For example:
 ```
 mCSAdWidget.load("<Placement>");
 ```
@@ -161,7 +161,7 @@ Before this will work, however, your application must have access to the Interne
 </manifest>
 ```
 
-Finaly, if you know that you're about to leave the page in which the ad is placed, it's recommended to use the destroyAdWidget() function in order to make sure it will be loaded as new in the next page view.
+* Finaly, if you know that you're about to leave the page in which the ad is placed, it's recommended to use the destroyAdWidget() function in order to make sure it will be loaded as new in the next page view.
 Use this code when you're leaving the page:
 ```
 mCSAdWidget.destroyAdWidget();
