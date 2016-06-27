@@ -153,7 +153,7 @@ Before this will work, however, your application must have access to the Interne
 </manifest>
 ```
 
-Finaly, if you know that you're about to leave the page in which the ad is placed, it's prefarable to use the destroyAdWidget() function in order to make sure it will be loaded as new in the next page view.
+Finaly, if you know that you're about to leave the page in which the ad is placed, it's recommended to use the destroyAdWidget() function in order to make sure it will be loaded as new in the next page view.
 Use this code when you're leaving the page:
 ```
 mCSAdWidget.destroyAdWidget();
