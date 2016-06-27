@@ -141,12 +141,15 @@ mCSAdWidget.setAdListener(new CSAdWidgetListener() {
 });
 ```
 Note: onWidgetLoaded- a notification for when the widget in done loading.
+
 onNoServing- a notification for when the widget is not going to be loaded at all because of some reason.
+
 onOrientationChange- If the SDK is initialized in the onCreate function of the activity, and you didn't set a configuration to  manually handle the orientation in this activity, the onCreate function will be called again and again on each orientation changing. This is fine because the CSAdWidget handles this situation by itself, so that it will only load the widget once. Therefore the onWidgetLoaded/onNoServing notifications won't be sent again when the orientation changes. In those conditions you might need the onOrientationChange notification.
 
 An example for using the onOrientationChange notification: Lets say you made some changes to the CSAdView in the onCreate function (set its visibility to be hidden maybe), and expect the onWidgetLoaded notification to change those back (to be shown again), so it will. However, if you'll rotate the screen - the onCreate function will be called again, the visibility will be set to hidden again, but the widget won't be loaded this time because it's already loaded. Use the onOrientationChange notification to change it back to visible.
 
-To load an ad, use load(). For example:
+
+To load the ad, use load(). For example:
 ```
 mCSAdWidget.load("<Placement>");
 ```
