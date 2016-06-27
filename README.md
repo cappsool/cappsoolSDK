@@ -121,7 +121,7 @@ In order to initialize the CSAdView, use this:
 ```
 CSAdView mCsAdView = mCSAdWidget.prepareWebView((CSAdView) findViewById(R.id.banner_csadview));
 ```
-* Adding a CSAdViewListener:
+* Adding a CSAdViewListener:\n
 You can also set a CSAdViewListener to recieve notifications about the widget, such as:
 onWidgetLoaded- when the widget in done loading,
 onNoServing- when the widget is not going to be loaded at all because of some error,
