@@ -97,8 +97,8 @@ call [[CSServer sharedInstance] stopLoading] when the ad auto refresh is not nee
 CSAdWidget mCSAdWidget = CSAdWidget.getInstance(this, "<Some uniqe key>");
 mCSAdWidget.setIntegrationKey("<Your integration key>")
 ```
-Notes: The <Your integration key> string should be replaced with your own integration key.  
-The <uniqe key> that is passed to the CSAdWidget is a random key that you choose for every ad that you have in the project.
+Notes: The \<Your integration key\> string should be replaced with your own integration key.  
+The \<uniqe key\> that is passed to the CSAdWidget is a random key that you choose for every ad that you have in the project.
 In case you are going to use a number of ads in the project then you need to re-initialize the SDK for each ad with a different uniqe key, but with the same integration key.
 
 * Adding a CSAdView to the application:  simply include the <CSAdView> element in your activity layout. For example, here's a layout file in which the CSAdView  fills the ad on the screen:
@@ -141,7 +141,7 @@ To load an ad, use load(). For example:
 ```
 mCSAdWidget.load("<Placement>", <callEventsOnEveryLoadCall: true|false>);
 ```
-Notes: <Placement> - Is the placement string you obtained from Cappsool.
+Notes: \<Placement\> - Is the placement string you obtained from Cappsool.
 callEventsOnEveryLoadCall - When you're using the CSAdWidgetListener you might want to get the events notifications on each load() call, even if the loading was suspended from some reason. for example: When the orientation changes, the widget handles whether a load() was called for no reason, suspends the loading and keeps showing the old adView. In that case you might want to get your notifications again, or not. Use the true/false parameter.
 
 
