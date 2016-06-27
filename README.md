@@ -92,12 +92,15 @@ call [[CSServer sharedInstance] stopLoading] when the ad auto refresh is not nee
 
 * Obtain an Integration key and placement strings from Cappsool
 * Add cappsool-lite-sdk jar file to your project.
-* In order to initialize the SDK, add the following code to your onCreate function:
+* In order to initialize the SDK, add the following code to your Activity:
 ```
-CSAdView myCsAdView = (CSAdView) findViewById(R.id.banner_csadview);
-myCsAdView.setIntegrationKey("<Your integration key>");
+CSAdWidget mCSAdWidget = CSAdWidget.getInstance(this, "<Some uniqe key>");
+mCSAdWidget.setIntegrationKey("<Your integration key>")
 ```
-Note: The <Your integration key> string should be replaced with your own integration key.  In case if you are going to use a number of ads in the project then you need to pass the integration key one time.
+Notes: The <Your integration key> string should be replaced with your own integration key.  
+The <uniqe key> that is passed to the CSAdWidget is a random key that you choose for every ad that you have in the project.
+In case you are going to use a number of ads in the project then you need to re-initialize the SDK for each ad with a different uniqe key, but with the same integration key.
+
 * Adding a CSAdView to the application:  simply include the <CSAdView> element in your activity layout. For example, here's a layout file in which the CSAdView  fills the ad on the screen:
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -114,12 +117,34 @@ Note: The <Your integration key> string should be replaced with your own integra
     </com.cappsool.lite.sdk.widget.CSAdView>
 </LinearLayout>
 ```
-To load an ad in the CSAdView, use load(). For example:
+In order to initialize the CSAdView, use this:
 ```
-CSAdView myCsAdView = (CSAdView) findViewById(R.id.banner_csadview);
-myCsAdView.setIntegrationKey("<Your integration key>");
-myCsAdView.load("<placement>");
+CSAdView mCsAdView = mCSAdWidget.prepareWebView((CSAdView) findViewById(R.id.banner_csadview));
 ```
+* Adding a CSAdViewListener:
+You can also set a CSAdViewListener to recieve notifications about the widget, such as:
+onWidgetLoaded- when the widget in done loading,
+or onNoServing- when the widget is not going to be loaded at all because of some error.
+Use this code:
+```
+mCSAdWidget.setAdListener(new CSAdWidgetListener() {
+    @Override
+    public void onWidgetLoaded() {
+    }
+    
+    @Override
+    public void onNoServing(String reason) {
+    }
+});
+```
+To load an ad, use load(). For example:
+```
+mCSAdWidget.load("<Placement>", <callEventsOnEveryLoadCall: true|false>);
+```
+Notes: <Placement> - Is the placement string you obtained from Cappsool.
+callEventsOnEveryLoadCall - When you're using the CSAdWidgetListener you might want to get the events notifications on each load() call, even if the loading was suspended from some reason. for example: When the orientation changes, the widget handles whether a load() was called for no reason, suspends the loading and keeps showing the old adView. In that case you might want to get your notifications again, or not. Use the true/false parameter.
+
+
 Before this will work, however, your application must have access to the Internet. To get Internet access, request the INTERNET permission in your manifest file. For example:
 ```
 <manifest ... >
@@ -127,16 +152,9 @@ Before this will work, however, your application must have access to the Interne
     ...
 </manifest>
 ```
-* Adding a CSAdViewListener: 
-To recieve a notification when the widget is ready to be displayed
 
+Finaly, if you know that you're about to leave the page in which the ad is placed, it's prefarable to use the destroyAdWidget() function in order to make sure it will be loaded as new in the next page view.
+Use this code when you're leaving the page:
 ```
-myAdView.setAdListener(new CSAdViewListener() {
-
-    @Override
-    public void onWidgetLoaded() {
-// Do something, such as:
-        myAdView.setVisibility(View.VISIBLE);
-    }
-});
+mCSAdWidget.destroyAdWidget();
 ```
