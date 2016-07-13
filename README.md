@@ -160,7 +160,10 @@ Before this will work, however, your application must have access to the Interne
     ...
 </manifest>
 ```
-
+* In order to open the ad as an interstitial, use this code once the csAdWidget is loaded:
+```
+mCSAdWidget.openInterstitial();
+```
 * Finaly, if you know that you're about to leave the page in which the ad is placed, it's recommended to use the destroyAdWidget() function in order to make sure it will be loaded as new in the next page view.
 Use this code when you're leaving the page:
 ```
