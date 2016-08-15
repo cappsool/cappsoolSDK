@@ -28,7 +28,7 @@
 [[CSServer sharedInstance] putUserGender:@"<male/female>"];
 [[CSServer sharedInstance] putUserAge:@"<age>"];
 ```
-### Requesting and ad - Option 1: interstitial
+### Requesting an ad - Option 1: interstitial
 
 
 ```
@@ -56,7 +56,7 @@
 
 call [[CSServer sharedInstance] stopLoading] when the ad auto refresh is not needed any more.
 
-### Requesting and ad - Option 2: custom view
+### Requesting an ad - Option 2: custom view
 
 ```
 @interface ViewController () <CSServerDelegate>
