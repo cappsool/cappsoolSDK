@@ -20,6 +20,6 @@
 
 @property (nullable, nonatomic, assign) id <CSAdViewControllerDelegate> csAdViewControllerDelegate;
 @property (nullable, strong) NSString *subject;
--(void) load:(nonnull NSString*)htmlString ;
+-(void) load:(nonnull NSString*)htmlString subject:(nullable NSString*)subject;
 
 @end

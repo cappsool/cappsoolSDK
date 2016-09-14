@@ -21,6 +21,7 @@
 
 @property (nullable, nonatomic, assign) id <CSAdViewDelegate> csAdViewDelegate;
 @property BOOL allowScroll;
--(void) load:(nonnull NSString*)htmlString;
+-(void) load:(nonnull NSString*)htmlString subject:(nullable NSString*)subject;
 -(void) reload;
+-(void) scrollToTop;
 @end

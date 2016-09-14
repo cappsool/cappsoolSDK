@@ -24,6 +24,8 @@
 @interface CSServer : NSObject
 +(nonnull CSServer*) sharedInstance;
 
+@property BOOL useInAppStorePage;
+@property BOOL showVideoInInAppStorePage;
 @property int logLevel;
 @property (nullable, nonatomic, assign) id <CSServerDelegate> csServerDelegate;
 
@@ -38,8 +40,9 @@
 -(void) stopLoading;
 -(void) loadOnce:(nonnull NSString*)subject;
 -(void) presentInterstitialAd:(nonnull UIViewController*)vc;
--(nullable CSAppVideoView *) createAppVideoView :(CGRect)frame subject:(nonnull NSString*)subject multiVideo:(BOOL)multiVideo;
+-(nullable CSAppVideoView *) createAppVideoView :(CGRect)frame subject:(nonnull NSString*)subject multiVideo:(BOOL)multiVideo storeId:(nullable NSString*)storeId;
 -(nullable CSAdView *) createAdView :(CGRect)frame subject:(nonnull NSString*)subject;
 
+-(void) csLog:(NSString*)logString level:(int)level;
 @end
 
